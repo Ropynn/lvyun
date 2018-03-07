@@ -1,0 +1,143 @@
+{
+  "home": {
+    "setMeal": "套餐选择",
+    "projects": [
+      {
+        "tips": "唤醒细胞",
+        "price": "10",
+        "time": "5",
+        "price1":"1",
+        "time1":"1"
+      },
+      {
+        "tips": "通经活血",
+        "price": "25",
+        "time": "15",
+        "price1":"1",
+        "time1":"1"
+      },
+      {
+        "tips": "祛寒除湿",
+        "price": "45",
+        "time": "30",
+        "price1":"1",
+        "time1":"1"
+      },
+      {
+        "tips": "健康修复",
+        "price": "75",
+        "time": "60",
+        "price1":"1",
+        "time1":"5"
+      }
+    ],
+    "considerations": "哆蕾咪服务协议"
+  },
+  "member": {
+    "headings": "哆蕾咪微SPA——6元唤醒身体",
+    "balances": "0000",
+    "recharges": [
+      {
+        "charge": "30",
+        "send": "3",
+        "type": 0
+      },
+      {
+        "charge": "50",
+        "send": "11.11",
+        "type": 1
+      },
+      {
+        "charge": "100",
+        "send": "22.22",
+        "type": 2
+      },
+      {
+        "charge": "200",
+        "send": "50",
+        "type": 3
+      }
+    ]
+  },
+  "payment": {
+    "time": "09",
+    "secondc": "00",
+    "ordernumber": "9354545454",
+    "pay": "已付款",
+    "completed": "已完成",
+    "packageType": "6元/6分钟",
+    "date": "2017.12.16",
+    "overTime":"2018-02-03T05:58:51.000Z",
+    "updatedAt":"2018-02-03T03:58:51.000Z"
+  },
+  "orderList": [
+    {
+      "payid": "HZ1515815930930",
+      "price": "6",
+      "description": "天河店J67508设备",
+      "status": "未启动",
+      "move": false,
+      "pay": "支付成功",
+      "creatTime": "2018-01-13T03:58:51.000Z",
+      "time": "6"
+    },
+    {
+      "payid": "HZ1515815930888",
+      "price": "15",
+      "description": "天河店J67508设备",
+      "status": "已启动",
+      "move": true,
+      "pay": "支付成功",
+      "creatTime": "2018-01-13T03:58:51.000Z",
+      "time": "10"
+    }
+  ],
+  "withdrawList": [
+    {
+      "time": "2018-01-13T03:58:51.000Z",
+      "amount": "1800000000",
+      "statu": "1"
+    },
+    {
+      "time": "2018-01-13T03:58:51.000Z",
+      "amount": "18000",
+      "statu": "0"
+    },
+    {
+      "time": "2018-01-13T03:58:51.000Z",
+      "amount": "18000",
+      "statu": "2"
+    },
+    {
+      "time": "2018-01-13T03:58:51.000Z",
+      "amount": "1800000000",
+      "statu": "1"
+    },
+    {
+      "time": "2018-01-13T03:58:51.000Z",
+      "amount": "18000",
+      "statu": "0"
+    },
+    {
+      "time": "2018-01-13T03:58:51.000Z",
+      "amount": "18000",
+      "statu": "2"
+    }
+  ],
+  "refund": [
+    {
+      "price": "38",
+      "description": "天河店J67508设备",
+      "orderId": "1554770879568373",
+      "creatTime": "2018-01-13T03:58:51.000Z",
+      "statu": "0"
+    },
+    {
+      "price": "28",
+      "description": "天河店J67508设备",
+      "orderId": "1554770879568555",
+      "creatTime": "2018-01-13T03:58:51.000Z",
+      "statu" :"1"
+    }
+  ]
+}
