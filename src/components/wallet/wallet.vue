@@ -37,6 +37,17 @@
         </div>
       </div>
     </transition>
+    <!-- 无权限 -->
+    <transition name="fade">
+      <div class="makeSure can" v-show="isCan" @touchmove.prevent>
+        <div class="box">
+          <div class="message">
+            无权限
+          </div>
+        </div>
+      </div>
+    </transition>
+
   </div>
 
 </template>
@@ -48,11 +59,14 @@ export default {
   data() {
     return {
       isShow: false,
+      isCan: false,
       money: "",
       user: {},
-      walletDraw: ""
+      walletDraw: "",
+      isAdmin: ""
     };
   },
+
   created() {
     this.axios.get(this.api + "/wx/getUser").then(res => {
       if (res.data.statu == 1) {
@@ -63,7 +77,13 @@ export default {
     });
     this.axios.get(this.api + "/wx/getAllMoney").then(res => {
       console.log(res);
-      if (res.data.statu) {
+      if (res.data.statu == 0) {
+        console.log("000");
+        this.$router.push({
+          path: "/jurisdiction"
+        });
+      } else if (res.data.statu) {
+        // console.log("...");
         this.money = res.data.money / 100;
       }
       this.walletDraw = "/walletDraw" + "/" + this.money;
@@ -189,6 +209,22 @@ export default {
         line-height: px2rem(100px);
         color: #26a2ff;
         border-top: 1px solid #666;
+      }
+    }
+  }
+
+  .can {
+    .box {
+      width: px2rem(500px);
+      height: px2rem(300px);
+
+      .message {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        font-size: 18px;
+        color: red;
       }
     }
   }

@@ -75,7 +75,7 @@ export default {
     hided: "",
     endText: {
       type: String,
-      default: "按摩完成，欢迎继续使用"
+      default: "理疗完成，欢迎继续使用"
     }
   },
   created() {

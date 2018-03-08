@@ -27,6 +27,7 @@ import video from "../components/video.vue";   // 视频组件
 // const video = () => import('../components/video.vue');// 视频组件
 
 const businessman = () => import('../components/businessman.vue'); //商家中心组件
+const jurisdiction = () => import('../components/jurisdiction.vue');//权限组件
 
 // const order = () => import('../components/order/orderDetail.vue');//订单列表组件
 // const finishOrder = () => import('../components/order/finishOrder.vue');//已完成订单列表组件
@@ -91,6 +92,12 @@ export default new VueRouter({
       path: "/businessman",
       component: businessman
     },
+    //没有权限的页面
+    {
+      path:"/jurisdiction",
+      component:jurisdiction
+    },
+
 
     //订单路由
     {

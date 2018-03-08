@@ -6,16 +6,30 @@
 
 <script>
 export default {
-  created(){
-
-  },
+  created() {},
   data() {
     return {
       user: {},
-      code: this.$route.query.code,
+      code: this.$route.query.code
     };
   },
   created() {
+    // this.axios.get(this.api + "/wx/getUser?code=" + this.code).then(res => {
+    //   console.log("------------------------");
+    //   console.log(res);
+    //   return;
+    //   console.log("------------------------");
+      // if (res.data.statu == 1) {
+      //   // this.investor = res.data.investor;
+      //   // console.log(this.investor);
+      //   this.user = res.data.user;
+      //   //判断是否首单
+      //   this.isFirst = this.user.firstpay;
+
+      // } else {
+      //   window.location = this.api + "/wx/login?goback=home?code=" + this.code;
+      // }
+    // });  
     // console.log(this.code)
 
     // console.log(this.$route.query);
@@ -44,5 +58,5 @@ export default {
 @import './common/stylus/mixins.styl';
 </style>
 <style lang="less">
-@import '~vux/src/styles/reset.less';
+@import "~vux/src/styles/reset.less";
 </style>

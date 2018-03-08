@@ -3,7 +3,7 @@
     <banner-header></banner-header>
     <div class="tip">
       <p class="desc">
-        <img src="../assets/绿韵理疗仪小程序_套餐页面_04.png"> 专享优惠：新用户首单0元体验唤醒细胞套餐！
+        <img src="../assets/绿韵理疗仪小程序_套餐页面_04.png"> 专享优惠：新用户首单1元体验唤醒细胞套餐！
       </p>
     </div>
     <div class="container">
@@ -149,7 +149,6 @@ export default {
     return {
       home: [],
       home1: [],
-      firstList: [],
       checked: "checked",
       val: "1",
       flag: false,
@@ -199,7 +198,7 @@ export default {
     // console.log(this.$route.query.code);
     //判断是否授权登录
     this.axios.get(this.api + "/wx/getUser?code=" + this.code).then(res => {
-      // console.log(res);
+      console.log(res);
       if (res.data.statu == 1) {
         this.investor = res.data.investor;
         // console.log(this.investor);
@@ -212,33 +211,33 @@ export default {
         window.location = this.api + "/wx/login?goback=home?code=" + this.code;
       }
     });
+    //从后台获取套餐列表
+    // this.axios
+    //   .get(this.api + "/wx/getMoneyPackage?code=" + this.code)
+    //   .then(res => {
+    //     // console.log(res);
+    //     this.home = res.data.data;
 
-    this.axios
-      .get(this.api + "/wx/getMoneyPackage?code=" + this.code)
-      .then(res => {
-        // console.log(res);
-        this.home = res.data.data;
+    //     //如果没有列表,首单图片隐藏
+    //     // if (this.home.length < 2) {
+    //     //   this.isFirst = false;
+    //     // }
+    //   });
 
-        //如果没有列表,首单图片隐藏
-        if (this.home.length < 2) {
-          this.isFirst = false;
-        }
-        // console.log(this.home.splice(0,1));
-        // console.log(this.home.shift());
-        // console.log(this.home[0].tips);
-      });
-
+    //本地mock数据
     this.axios.get("/api/home").then(res => {
       this.home1 = res.data.data;
-      console.log(this.home1);
+      // console.log(this.home1);
     });
 
+
+    //微信支付配置
     this.axios
       .post(this.api + "/wx/getConf", {
         path: this.api + "/#" + this.$route.path
       })
       .then(res => {
-        // console.log(res);
+        console.log(res);
         this.appId = res.data.conf.appId;
         this.timestamp = res.data.conf.timestamp;
         this.nonceStr = res.data.conf.nonceStr;
@@ -288,6 +287,7 @@ export default {
     close() {
       this.flag = !this.flag;
     },
+    //视频播放
     play() {
       this.$router.push({
         path: "/video"
@@ -303,75 +303,31 @@ export default {
     },
 
     //点击调用微信支付的方法
-    // choosePay(item, index) {
-    //   //首单免费
-    //   // if (this.isFirst && index == 0) {
-    //   //   console.log("首单免费");
-    //   //   this.$router.push({
-    //   //     path: "/mcMove/" + item.price + "/" + item.time + "/" + this.orderId
-    //   //   });
-    //   // }
-
-    //   const equipmentCode = this.code;
-    //   if (this.val != "1") {
-    //     this.loading();
-    //     return;
-    //   }
-    //   if (this.investor == true) {
-    //     this.$router.push({
-    //       path: "/mcMove/" + item.price + "/" + item.time + "/" + this.orderId
-    //     });
-    //   } else {
-    //     this.axios
-    //       .post(this.api + "/wx/getPay", {
-    //         time: item.time,
-    //         money: item.price,
-    //         code: equipmentCode
-    //       })
-    //       .then(res => {
-    //         if (res.data.statu == 1) {
-    //           this.orderId = res.data.order_id;
-    //           wx.chooseWXPay({
-    //             timestamp: res.data.conf.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-    //             nonceStr: res.data.conf.nonceStr, // 支付签名随机串，不长于 32 位
-    //             package: res.data.conf.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
-    //             signType: res.data.conf.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-    //             paySign: res.data.conf.paySign, // 支付签名
-
-    //             // 支付成功后的回调函数
-    //             success: res => {
-    //               this.$router.push({
-    //                 path:
-    //                   "/mcMove/" +
-    //                   item.price +
-    //                   "/" +
-    //                   item.time +
-    //                   "/" +
-    //                   this.orderId
-    //               });
-    //             }
-    //           });
-    //         }
-    //       });
-    //   }
-    // }
-
     choosePay(item, index) {
+      //首单免费
+      // if (this.isFirst && index == 0) {
+      //   console.log("首单免费");
+      //   this.$router.push({
+      //     path: "/mcMove/" + item.price + "/" + item.time + "/" + this.orderId
+      //   });
+      // }
+
       const equipmentCode = this.code;
       if (this.val != "1") {
         this.loading();
         return;
       }
-      //投资人直接跳过微信支付
+
+      //判断是不是投资人,选择是否调用微信支付
       if (this.investor == true) {
         this.$router.push({
-          path: "/mcMove/" + item.price + "/" + item.time + "/" + this.orderId
+          path: "/mcMove/" + item.price1 + "/" + item.time1 + "/" + this.orderId
         });
       } else {
         this.axios
           .post(this.api + "/wx/getPay", {
-            time: item.time,
-            money: item.price,
+            time: item.time1,
+            money: item.price1,
             code: equipmentCode
           })
           .then(res => {
