@@ -75,15 +75,22 @@ export default {
         window.location = this.api + "/wx/login?goback=wallet";
       }
     });
+    //判断用户是否是商家
     this.axios.get(this.api + "/wx/getAllMoney").then(res => {
       console.log(res);
+      // alert(res.data.statu)
+      console.log(res.data.statu);
+      //不是商家弹出无权限遮罩层
       if (res.data.statu == 0) {
-        console.log("000");
-        this.$router.push({
-          path: "/jurisdiction"
-        });
+        this.money = res.data.money / 100;
+        this.isCan = true;
+        // console.log("000");
+        // this.$router.push({
+        //   path: "/jurisdiction"
+        // });
       } else if (res.data.statu) {
-        // console.log("...");
+        //是商家,没有遮罩层
+
         this.money = res.data.money / 100;
       }
       this.walletDraw = "/walletDraw" + "/" + this.money;
