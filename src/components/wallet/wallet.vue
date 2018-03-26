@@ -21,6 +21,7 @@
         </cell>
       </group>
     </div>
+
     <!-- 确认层 -->
     <transition name="fade">
       <div class="makeSure" v-show="isShow" @touchmove.prevent>
@@ -75,6 +76,7 @@ export default {
         window.location = this.api + "/wx/login?goback=wallet";
       }
     });
+
     //判断用户是否是商家
     this.axios.get(this.api + "/wx/getAllMoney").then(res => {
       console.log(res);

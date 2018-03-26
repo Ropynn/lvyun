@@ -5,4 +5,4 @@ export default {
     // Vue.prototype.api = 'http://tsa.yzidea.com';
     // Vue.prototype.api = 'http://shop.doremes.com';
   }
-}
+};

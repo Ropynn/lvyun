@@ -211,6 +211,7 @@ export default {
         window.location = this.api + "/wx/login?goback=home?code=" + this.code;
       }
     });
+    
     //从后台获取套餐列表
     // this.axios
     //   .get(this.api + "/wx/getMoneyPackage?code=" + this.code)
