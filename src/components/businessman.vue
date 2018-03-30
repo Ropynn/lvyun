@@ -198,7 +198,7 @@ export default {
   background-color: #ddd;
 
   header {
-    background-color: #fe4871;
+    background-color: #4B6EB7;
     padding: px2rem(20px);
   }
 

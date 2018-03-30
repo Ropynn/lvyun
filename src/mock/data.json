@@ -21,7 +21,7 @@
         "price": "45",
         "time": "30",
         "price1":"1",
-        "time1":"15"
+        "time1":"5"
       },
       {
         "tips": "健康修复",
@@ -31,6 +31,7 @@
         "time1":"30"
       }
     ],
+    
     "considerations": "哆蕾咪服务协议"
   },
   "member": {
