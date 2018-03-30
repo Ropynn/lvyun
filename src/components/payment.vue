@@ -81,7 +81,10 @@ export default {
   created() {
     const obj = JSON.parse(sessionStorage.getItem("_ORDER_"));
     this.payment = obj;
+    console.log(obj);
     this.endTime = new Date(obj.overTime).getTime();
+    this.startTime = new Date(obj.updatedAt).getTime();
+    console.log(this.startTime);
     console.log(this.endTime);
     // this.endTime = new Date(this.payment.updatedAt).getTime();
     // console.log(this.endTime);

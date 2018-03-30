@@ -138,6 +138,7 @@ export default {
             obj.time = res.data.order.time;
             // console.log(obj);
             sessionStorage.setItem("_ORDER_", JSON.stringify(obj));
+
             this.$router.push({ path: "/payment" });
           } else if (res.data.statu == 0) {
             this.isShow = !this.isShow;

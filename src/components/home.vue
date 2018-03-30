@@ -319,19 +319,22 @@ export default {
         return;
       }
 
-      //判断是不是投资人,选择是否调用微信支付
-      if (this.investor == true) {
-        this.$router.push({
-          path: "/mcMove/" + item.price1 + "/" + item.time1 + "/" + this.orderId
-        });
-      } else {
-        this.axios
-          .post(this.api + "/wx/getPay", {
-            time: item.time1,
-            money: item.price1,
-            code: equipmentCode
-          })
-          .then(res => {
+      this.axios
+        .post(this.api + "/wx/getPay", {
+          time: item.time1,
+          money: item.price1,
+          code: equipmentCode
+        })
+        .then(res => {
+          console.log(res);
+          //如果是设备方
+          if (res.data.statu == 2) {
+            this.$router.push({
+              path:
+                "/mcMove/" + item.price1 + "/" + item.time1 + "/" + this.orderId
+            });
+          } else if (res.data.statu == 1) {
+            //如果不是设备方
             if (res.data.statu == 1) {
               this.orderId = res.data.order_id;
               wx.chooseWXPay({
@@ -355,8 +358,50 @@ export default {
                 }
               });
             }
-          });
-      }
+          } else {
+            console.log("请求失败");
+            console.log(res);
+          }
+        });
+
+      //判断是不是投资人,选择是否调用微信支付
+      // if (this.investor == true) {
+      //   this.$router.push({
+      //     path: "/mcMove/" + item.price1 + "/" + item.time1 + "/" + this.orderId
+      //   });
+      // } else {
+      //   this.axios
+      //     .post(this.api + "/wx/getPay", {
+      //       time: item.time1,
+      //       money: item.price1,
+      //       code: equipmentCode
+      //     })
+      //     .then(res => {
+      //       if (res.data.statu == 1) {
+      //         this.orderId = res.data.order_id;
+      //         wx.chooseWXPay({
+      //           timestamp: res.data.conf.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+      //           nonceStr: res.data.conf.nonceStr, // 支付签名随机串，不长于 32 位
+      //           package: res.data.conf.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
+      //           signType: res.data.conf.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+      //           paySign: res.data.conf.paySign, // 支付签名
+
+      //           // 支付成功后的回调函数
+      //           success: res => {
+      //             this.$router.push({
+      //               path:
+      //                 "/mcMove/" +
+      //                 item.price1 +
+      //                 "/" +
+      //                 item.time1 +
+      //                 "/" +
+      //                 this.orderId
+      //             });
+      //           }
+      //         });
+      //       }
+      //     });
+      // }
     }
   },
   components: {
